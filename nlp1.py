@@ -42,3 +42,52 @@ chineses = blob.translate(to = 'zh')
 
 #translates back to ENG
 #print(chineses.translate())
+
+from textblob import Word
+
+index = Word('index)')
+
+print(index.pluralize())
+
+cacti = Word('cacti')
+print(cacti.singularize())
+
+#wordlist
+animals = TextBlob('dog cat fish bird').words
+print(animals.pluralize())
+
+#spellcheck and correction
+word = Word('theyr')
+
+print(word.spellcheck())
+
+print(word.correct())
+
+#Normalization (of words)
+
+word1 = Word('Studies')
+
+word2 = Word('Varieites')
+
+print(word1.stem())
+print(word2.stem())
+
+print(word1.lemmatize())
+print(word2.lemmatize())
+
+#Definitions, Synonms, and Antonyms
+happy = Word('happy')
+
+print(happy.definitions)
+
+print(happy.synsets)
+
+for s in happy.synsets:
+    for l in s.lemmas():
+        print(l.name())
+
+synonym = happy.synsets[1].lemmas()[0].name()
+print(synonym)
+
+antonym = happy.synset[0].lemmas()[0].name()
+print(antonym)
