@@ -16,14 +16,15 @@ text = Path('book of John text.txt').read_text()
 blob = TextBlob(text)
 
 print(blob)
-'''
+
 df = pd.DataFrame(text, columns = ['word', 'count'])
 print(df)
 
 mask_image = imageio.imread('mask_circle.png')
 
 wordcloud = WordCloud(colormap='prism', mask = mask_image, background_color='white')
-
+print('test')
+'''
 wordcloud = wordcloud.generate(text)
 
 wordcloud = wordcloud.to_file('BookOfJohnCircle.png')
