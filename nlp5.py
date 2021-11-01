@@ -21,13 +21,14 @@ text = Path('book of John text.txt').read_text()
 
 blob = TextBlob(text)
 
+noun = blob.noun_phrases
 #print(blob)
 
 from operator import itemgetter
 
-items = blob.noun_phrases
+items = blob.word_counts.items()
 
-items = [item for item in items if item[0] not in stops]
+items = [item for item in items if item[0] not in stops and item[0] in noun]
 
 sorted_items = sorted(items, key = itemgetter(1), reverse = True)
 
