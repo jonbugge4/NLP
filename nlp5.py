@@ -4,7 +4,7 @@ import textblob
 from pathlib import Path
 import pandas as pd
 import nltk
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.corpus import stopwords
 from textblob import TextBlob
 
@@ -28,22 +28,22 @@ from operator import itemgetter
 
 items = blob.word_counts.items()
 
-items = [item for item in items if item[0] not in stops and item[0] in noun]
+cleaned_items = [item for item in items if item[0] not in stops if item[0] in noun]
 
-sorted_items = sorted(items, key = itemgetter(1), reverse = True)
 
-top15 =sorted_items[1:16]
+sorted_items = sorted(cleaned_items, key = itemgetter(1), reverse = True)
 
-df = pd.DataFrame(top15, columns=['word', 'count'])
+top15 =sorted_items[0:15]
+print(top15)
 
-mask_image = imageio.imread('mask_circle.png')
+wordcloud = WordCloud(colormap='Blues', background_color='grey')
 
-wordcloud = WordCloud(colormap='prism', mask = mask_image, background_color='white')
-print(df)
-'''
+text = ''
+for x in top15:
+    print(x)
+    text += x[0] + ' '
+
 wordcloud = wordcloud.generate(text)
-
 wordcloud = wordcloud.to_file('BookOfJohnCircle.png')
 
 print('done')
-'''
